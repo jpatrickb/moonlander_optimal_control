@@ -1,0 +1,91 @@
+%! Author = josephbeal
+%! Date = 3/27/25
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{amsthm,amsfonts}
+\usepackage{amssymb}
+\usepackage[parfill]{parskip}
+\usepackage{mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{mathrsfs}
+
+% Document
+\begin{document}
+
+Control:
+\begin{align}
+    \mathbf{u} &=
+    \begin{bmatrix*}
+        \tau \\ \theta
+    \end{bmatrix*}
+\end{align}
+
+Cost functional:
+\begin{align}
+    J[u] &= \int_{0}^{t_f} \alpha \tau^2 \ dt + \gamma t_f + \beta \phi(\dot{x}(t_f), \dot{y}(t_f)) \\
+    &= \int_{0}^{t_f} \alpha \tau^2\ dt + \gamma t_f + \beta\left(\dot{x}(t_f)^2 + \dot{y}(t_f)^2\right)
+\end{align}
+
+Hamiltonian:
+\begin{align}
+    H &= \mathbf{p} \cdot \mathbf{f} - L \\
+    &= \mathbf{p} \cdot
+    \begin{bmatrix*}
+        \dot{x} \\ \dot{y} \\ \tau \cos(\theta) \\ \tau\sin(\theta) - g
+    \end{bmatrix*} - \alpha \tau^2 \\
+    &= p_1 \dot{x} + p_2 \dot{y} + p_3 \tau \cos(\theta) + p_4(\tau\sin(\theta) - g) - \alpha \tau^2
+\end{align}
+
+\begin{align}
+    \frac{\partial H}{\partial \theta } &= -p_3 \tau \sin\theta + p_4 \tau \cos\theta = 0 \implies (c_3 - c_1 t) \tan\theta = c_4 - c_2 t \\
+    \frac{\partial H}{\partial \tau } &= p_3 \cos\theta + p_4 \sin\theta - 2\alpha \tau = 0 \implies 2\alpha \tau = p_3 \cos\theta + p_4 \sin\theta
+\end{align}
+
+Costate equations satisfy:
+\begin{align}
+    \dot{p_1} &= -\frac{\partial H}{\partial x} = 0 \implies p_1 = c_1 \\
+    \dot{p_2} &= -\frac{\partial H}{\partial y} = 0 \implies p_2 = c_2 \\
+    \dot{p_3} &= -\frac{\partial H}{\partial \dot{x}} = -p_1 \implies p_3 = -c_1 t + c_3 \\
+    \dot{p_4} &= -\frac{\partial H}{\partial \dot{y}} = -p_2 \implies p_4 = -c_2 t + c_4
+\end{align}
+
+State equations satisfy:
+\begin{align}
+    \dot{x} &= \dot{x} \\
+    \dot{y} &= \dot{y} \\
+    \ddot{x} &= \tau \cos\theta \\
+    \ddot{y} &= \tau\sin\theta - g
+\end{align}
+
+Boundary conditions:
+\begin{align}
+    x(0) &= x_0 \\
+    y(0) &= y_0 \\
+    \dot{x}(0) &= v_0 \\
+    \dot{y}(0) &= 0 \\
+    p_1(t_f) &= -\frac{\partial \phi }{- x(t_f)} = 0 \implies c_1 = 0 \\
+%    p_2(t_f) &: \quad \text{ free} \\
+    p_3(t_f) &= 2 \beta \dot{x}(t_f) \\
+    p_4(t_f) &= 2\beta \dot{y}(t_f) \\
+    H(t_f) &= p_1 \dot{x}(t_f) + p_2 \dot{y}(t_f) + p_3 \tau(t_f)\cos(\theta(t_f)) + p_4(\tau(t_f)\sin(\theta(t_f)) - g) - \alpha \tau(t_f)^2 \\
+    &= c_2 \dot{y}(t_f) + 2\beta\dot{x}(t_f)\tau(t_f)\cos\theta(t_f) + p_3 \tau(t_f)\cos(\theta(t_f)) + p_4\left(\tau(t_f)\sin(\theta(t_f)) - g\right) - \alpha \tau(t_f)^2 \\
+    &= -\frac{\partial \phi }{\partial t_f} \\
+    &= -\gamma
+\end{align}
+
+Implications:
+\begin{align}
+    p_3(t_f) &= p_3(t) = 2\beta\dot{x}(t_f) = c_3 \\
+    p_4(t_f) &= 2\beta\dot{y}(t_f) = c_4 - c_2 t_f \\
+    p_4(t) &= 2\beta\dot{x}(t_f)\tan(\theta(t)) \\
+    &= \frac{2\alpha \tau }{\sin\theta } - 2\beta\dot{y}\cot\theta(t) \\
+    \tan\theta(t_f) &= \frac{\dot{y}(t_f)}{\dot{x}(t_f)}
+\end{align}
+
+\pagebreak
+\end{document}
