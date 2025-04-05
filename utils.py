@@ -99,7 +99,7 @@ def lunar_lander(pos_init, v_init, tf_guess=20, y0_guess=1, alpha=10., beta=25.,
     uy = sol.y[7] / (2*alpha)
     t_vals = sol.x * tf
 
-    return t_vals, x, y, xp, yp, ux, uy, tf
+    return t_vals, x, y, xp, yp, ux, uy-G, tf
 
 
 def make_plots(t, x, y, xp, yp, ux, uy, tf):  
@@ -132,18 +132,36 @@ def make_plots(t, x, y, xp, yp, ux, uy, tf):
     plt.figure(figsize=(10, 4))
     plt.subplot(121)
     plt.plot(t, ux)
-    plt.title("x acceleration")
+    plt.title("Control $U_x$")
     plt.subplot(122)
     plt.plot(t, uy)
-    plt.title("y acceleration")
+    plt.title("Control $U_y$")
     plt.tight_layout()
     plt.show()
 
+    # plt.figure(figsize=(7, 5))
+    # plt.plot(t, np.arctan(-ux/uy))
+    # plt.title(r"$\theta$")
+    # plt.yticks([-np.pi/2, -np.pi/4, 0, np.pi / 4, np.pi/2], [r"$-\frac{\pi}{2}$", r"$-\frac{-\pi}{4}$", "0", r"$\frac{\pi}{4}$", r"$\frac{\pi}{2}$"])
+    # plt.show()
+
+    # plt.figure(figsize=(7, 5))
+    # plt.plot(t, np.arctan(uy / ux) - np.pi/2)
+    # plt.title(r"$\theta$")
+    # plt.yticks([-np.pi/2, -np.pi/4, 0, np.pi / 4, np.pi/2], [r"$-\frac{\pi}{2}$", r"$-\frac{-\pi}{4}$", "0", r"$\frac{\pi}{4}$", r"$\frac{\pi}{2}$"])
+    # plt.show()
+
     plt.figure(figsize=(7, 5))
-    plt.plot(t, np.arctan(uy / ux) + np.pi/2)
+    plt.plot(t, np.arctan2(-ux, uy))
     plt.title(r"$\theta$")
     plt.yticks([-np.pi/2, -np.pi/4, 0, np.pi / 4, np.pi/2], [r"$-\frac{\pi}{2}$", r"$-\frac{-\pi}{4}$", "0", r"$\frac{\pi}{4}$", r"$\frac{\pi}{2}$"])
     plt.show()
+
+    # plt.figure(figsize=(7, 5))
+    # plt.plot(t, np.arctan2(uy, ux) - np.pi/2)
+    # plt.title(r"$\theta$")
+    # plt.yticks([-np.pi/2, -np.pi/4, 0, np.pi / 4, np.pi/2], [r"$-\frac{\pi}{2}$", r"$-\frac{-\pi}{4}$", "0", r"$\frac{\pi}{4}$", r"$\frac{\pi}{2}$"])
+    # plt.show()
 
 
 if __name__=="__main":
