@@ -277,6 +277,7 @@ class LunarLander:
 
         # Plot the lander
         LANDER_SIZE = 0.3
+        # TODO: Get this image from TJ so we can use it
         img = mpimg.imread('./lander.png')
 
         # Line plot to show the trajectory
