@@ -89,5 +89,38 @@ Implications:
 
 And now we're scrapping all this and starting over with the control $\mathbf{u} = \begin{bmatrix*} \ddot{x} \\ \ddot{y}\end{bmatrix*}$.
 Something to look forward to :)
+
+New cost:
+\begin{align*}
+    J[\mathbf{u}] &= \int_{0}^{t_f} \alpha \|u\|^2\ dt + \gamma t_f + \beta\left(\dot{x}(t_f)^2 + \dot{y}(t_f)^2\right)
+\end{align*}
+
+New Hamiltonian:
+\begin{align*}
+    H = p_1 \dot{x} + p_2 \dot{y} + p_3 \ddot{x} + p_4 (\ddot{y} - g) - \alpha\left(\ddot{x}^2 + ddot{y}^2\right)
+\end{align*}
+
+New costate:
+\begin{align*}
+    \dot{p}_1 &= 0 \implies p_1 = c_1 \\
+    \dot{p}_2 &= 0 \implies p_2 = c_2 \\
+    \dot{p}_3 &= -p_1 \implies p_3 = c_3 - c_1 t \\
+    \dot{p}_4 &= -p_2 \implies p_4 = c_4 - c_2 t
+\end{align*}
+
+Optimization condition:
+\begin{align*}
+    \frac{\partial H}{\partial \ddot{x}} &= p_3 - 2\alpha \ddot{x} = 0 \\
+    \frac{\partial H}{\partial \ddot{y}} &= p_4 - 2\alpha \ddot{y} = 0 \\
+\end{align*}
+
+Boundary conditions:
+\begin{align*}
+    H(t_f) &= \gamma \\
+    x(0) &= x_0 \\
+    y(0) &= y_0 \\
+    \dot{x}(0) &= v_0 \\
+    \dot{y}(0) &= 0 \\
+\end{align*}
 \pagebreak
 \end{document}
