@@ -169,6 +169,24 @@ def make_plots(t, x, y, xp, yp, ux, uy, tf):
     plt.tight_layout()
     plt.show()
 
+def make_control_plot(t, ux, uy):
+    plt.style.use('dark_background')
+    plt.subplot(211)
+    plt.plot(t, np.arctan2(-ux, uy))
+    plt.title(r"Lander Angle ($\theta$)")
+    plt.yticks([0, np.pi / 8, np.pi / 4, 3*np.pi / 8], ["0", r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$", r"$\frac{3\pi}{8}$"])#, r"$\frac{\pi}{2}$"])
+    plt.xlabel("Time (seconds)")
+    plt.ylabel("Angle (radians)")
+
+    plt.subplot(212)
+    plt.plot(t, (ux**2 + uy**2)**0.5)
+    plt.title(r"Acceleration Magnitude ($\tau$)")
+    plt.xlabel("Time (seconds)")
+    plt.ylabel(r"Magnitude ($m/s^2$)")
+
+    plt.tight_layout()
+    plt.show()
+
 
 if __name__=="__main":
     pos = (5., 10.)
