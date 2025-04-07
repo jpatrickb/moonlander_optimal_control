@@ -8,12 +8,12 @@ from matplotlib.animation import FuncAnimation
 from matplotlib import animation
 
 animation.writer = animation.writers['ffmpeg']
-params = {
-    "text.usetex" : True,
-    "font.family" : "serif",
-    "font.serif" : ["Computer Modern Serif"]
-    }
-plt.rcParams.update(params)
+# params = {
+#     "text.usetex" : True,
+#     "font.family" : "serif",
+#     "font.serif" : ["Computer Modern Serif"]
+#     }
+# plt.rcParams.update(params)
 
 
 class LunarLander:
