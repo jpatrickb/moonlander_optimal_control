@@ -187,6 +187,16 @@ def make_control_plot(t, ux, uy):
     plt.tight_layout()
     plt.show()
 
+def make_trajectory_plot(x, y):
+    plt.style.use('dark_background')
+    plt.plot(x, y)
+    plt.title("Lander Trajectory")
+    plt.xlabel("Horizontal Position (meters)")
+    plt.ylabel("Vertical Position (meters)")
+    
+    plt.tight_layout()
+    plt.show()
+
 
 if __name__=="__main":
     pos = (5., 10.)
