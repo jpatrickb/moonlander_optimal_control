@@ -187,8 +187,16 @@ def make_control_plot(t, ux, uy):
     plt.tight_layout()
     plt.show()
 
-def make_trajectory_plot(x, y):
+def make_trajectory_plot(x, y, obstacle=None):
     plt.style.use('dark_background')
+
+    if obstacle is not None:
+        x_vals = np.linspace(np.min(x)-2*obstacle.r[0], np.max(x)+2*obstacle.r[1], 150)
+        y_vals = np.linspace(0, np.max(y)+.25, 150)
+        X, Y = np.meshgrid(x_vals, y_vals)
+        Z = obstacle.obstacle(X, Y)
+        plt.contour(X, Y, Z, linewidths=5)
+
     plt.plot(x, y)
     plt.title("Lander Trajectory")
     plt.xlabel("Horizontal Position (meters)")
