@@ -187,7 +187,7 @@ def make_control_plot(t, ux, uy):
     plt.tight_layout()
     plt.show()
 
-def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None):
+def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None, save_file=None):
     plt.style.use('dark_background')
 
     if obstacles is not None:
@@ -223,6 +223,10 @@ def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None):
     plt.ylabel("Vertical Position (meters)")
     
     plt.tight_layout()
+
+    if save_file is not None:
+        plt.savefig(save_file, dpi=300)
+
     plt.show()
 
 
