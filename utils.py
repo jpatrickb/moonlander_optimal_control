@@ -187,7 +187,7 @@ def make_control_plot(t, ux, uy):
     plt.tight_layout()
     plt.show()
 
-def make_trajectory_plot(x, y, obstacles=None, xlim=None):
+def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None):
     plt.style.use('dark_background')
 
     if obstacles is not None:
@@ -198,11 +198,24 @@ def make_trajectory_plot(x, y, obstacles=None, xlim=None):
             y_vals = np.linspace(-10., 10., 150)
             X, Y = np.meshgrid(x_vals, y_vals)
             Z = obstacle.obstacle(X, Y)
-            plt.contour(X, Y, Z, linewidths=5)
+            plt.contour(X, Y, Z, linewidths=5, cmap='Greys')
+    
+    if guess is not None:
+        guess_x, guess_y = guess 
+        plt.plot(guess_x, guess_y)
 
-    plt.plot(x, y)
+    
+    if guess is not None:
+        guess_x, guess_y = guess 
+        plt.plot(guess_x, guess_y, label="Initial Guess")
+    
+    plt.plot(x, y, color='#8dd3c7', label="Optimal Trajectory")
+
+    if guess is not None:
+        plt.legend()
+        
     plt.title("Lander Trajectory")
-    # plt.xlim(np.min(x)-1., np.max(x)+1.)
+    
     if xlim is not None:
         plt.xlim(*xlim)
     plt.ylim(0, np.max(y)+0.5)
