@@ -294,7 +294,7 @@ def lunar_lander_final_angle(pos_init, v_init, tf_guess=20, y0_guess=1, alpha=10
             yb[4],
             yb[6] - 2*beta*yb[2],
             yb[7] - 2*beta*yb[3],
-            yb[4]*yb[2] + yb[5]*yb[3] + yb[6]*uxf + yb[7]*(uyf - G) - alpha*(uxf**2 + uyf**2) - gamma + nu*(np.minimum(0, yb[1])) + final_angle_on * (uxf / (yb[1] + rho))**2
+            yb[4]*yb[2] + yb[5]*yb[3] + yb[6]*uxf + yb[7]*(uyf - G) - alpha*(uxf**2 + uyf**2) - gamma + nu*(np.minimum(0, yb[1])) - final_angle_on * (uxf / (yb[1] + rho))**2
         ])
     
     # Define the initial guess
