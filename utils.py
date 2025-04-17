@@ -187,7 +187,7 @@ def make_control_plot(t, ux, uy):
     plt.tight_layout()
     plt.show()
 
-def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None, save_file=None):
+def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None, title=None, save_file=None):
     plt.style.use('dark_background')
 
     if obstacles is not None:
@@ -213,8 +213,12 @@ def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None, save_file=
 
     if guess is not None:
         plt.legend()
-        
-    plt.title("Lander Trajectory")
+    
+    if title is not None:
+        plt.title(title)
+    else:
+        plt.title("Lander Trajectory")
+
     
     if xlim is not None:
         plt.xlim(*xlim)
