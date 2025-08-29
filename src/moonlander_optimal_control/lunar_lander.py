@@ -7,7 +7,7 @@ from scipy.ndimage import rotate
 from matplotlib.animation import FuncAnimation
 from matplotlib import animation
 
-animation.writer = animation.writers['ffmpeg']
+animation.writer = animation.writers["ffmpeg"]
 
 
 class LunarLander:
@@ -15,7 +15,16 @@ class LunarLander:
     LunarLander class to model the flight of a Lunar Lander
     """
 
-    def __init__(self, initial_position, initial_velocity, alpha=10.0, beta=25.0, gamma=2.0, grav=2.0, t_steps=200):
+    def __init__(
+        self,
+        initial_position,
+        initial_velocity,
+        alpha=10.0,
+        beta=25.0,
+        gamma=2.0,
+        grav=2.0,
+        t_steps=200,
+    ):
         """
         Initializes the Lunar Lander class by creating an ODE for the state and costate evolution
 
@@ -60,16 +69,18 @@ class LunarLander:
 
         def ode(t, y, p):
             tf = p[0]
-            return tf * np.array([
-                y[2],
-                y[3],
-                y[6] / (2 * self.alpha),
-                y[7] / (2 * self.alpha) - self.grav,
-                np.zeros_like(y[0]),
-                np.zeros_like(y[0]),
-                y[4],
-                y[5],
-            ])
+            return tf * np.array(
+                [
+                    y[2],
+                    y[3],
+                    y[6] / (2 * self.alpha),
+                    y[7] / (2 * self.alpha) - self.grav,
+                    np.zeros_like(y[0]),
+                    np.zeros_like(y[0]),
+                    y[4],
+                    y[5],
+                ]
+            )
 
         self.evolution_ode = ode
 
@@ -81,7 +92,6 @@ class LunarLander:
         """
 
         def bc(ya_, yb_, p):
-
             # Save variables
             x0, y0, xp0, yp0, p1_0, p2_0, p3_0, p4_0 = ya_
             xtf, ytf, xptf, yptf, p1tf, p2tf, p3tf, p4tf = yb_
@@ -100,17 +110,19 @@ class LunarLander:
                 + self.gamma
             )
 
-            return np.array([
-                x0 - self.x0,
-                y0 - self.y0,
-                xp0 - self.v0,
-                yp0,
-                ytf,
-                p1tf,
-                p3tf - 2 * self.beta * xptf,
-                p4tf - 2 * self.beta * yptf,
-                Htf,
-            ])
+            return np.array(
+                [
+                    x0 - self.x0,
+                    y0 - self.y0,
+                    xp0 - self.v0,
+                    yp0,
+                    ytf,
+                    p1tf,
+                    p3tf - 2 * self.beta * xptf,
+                    p4tf - 2 * self.beta * yptf,
+                    Htf,
+                ]
+            )
 
         self.boundary_condition = bc
 
@@ -225,7 +237,13 @@ class LunarLander:
         plt.subplot(rows, cols, 11)
         unit = 0.25
         y_tick = np.arange(-0.5, 0.5 + unit, unit)
-        y_label = [r"$-\\frac{\\pi}{2}$", r"$-\\frac{\\pi}{4}$", r"$0$", r"$\\frac{\\pi}{4}$", r"$\\frac{\\pi}{2}$"]
+        y_label = [
+            r"$-\\frac{\\pi}{2}$",
+            r"$-\\frac{\\pi}{4}$",
+            r"$0$",
+            r"$\\frac{\\pi}{4}$",
+            r"$\\frac{\\pi}{2}$",
+        ]
         self.controls["theta"].plot()
         plt.title(r"Angle of Acceleration ($\\arctan(u_y / u_x)$)")
         plt.yticks(y_tick * np.pi, y_label)
@@ -261,7 +279,7 @@ class LunarLander:
         LANDER_SIZE = 0.3
         img = mpimg.imread("./lander.png")
 
-        line, = plt.gca().plot([], [], "--", linewidth=1, color=PATH_COLOR)
+        (line,) = plt.gca().plot([], [], "--", linewidth=1, color=PATH_COLOR)
 
         lander = plt.imshow(
             img,
@@ -282,7 +300,9 @@ class LunarLander:
 
         def update(frame):
             # Update trajectory
-            line.set_data(self.state_sol["t"].iloc[:frame], self.state_sol["t"].iloc[:frame])
+            line.set_data(
+                self.state_sol["t"].iloc[:frame], self.state_sol["t"].iloc[:frame]
+            )
 
             vel_x = self.state_sol["xp"].iloc[frame]
             vel_y = self.state_sol["yp"].iloc[frame]
@@ -297,6 +317,11 @@ class LunarLander:
                 ]
             )
 
-        ani = FuncAnimation(plt.gcf(), update, frames=np.arange(0, len(self.state_sol["t"]), 60), interval=60, repeat=False)
+        ani = FuncAnimation(
+            plt.gcf(),
+            update,
+            frames=np.arange(0, len(self.state_sol["t"]), 60),
+            interval=60,
+            repeat=False,
+        )
         ani.save(anim_file, dpi=300)
-

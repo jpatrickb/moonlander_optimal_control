@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 def plot_summary(t, x, y, xp, yp, ux, uy, tf):
-    plt.style.use('dark_background')
+    plt.style.use("dark_background")
     print("Final Time:", tf)
     print("Final Position:", (np.round(x[-1], 3), np.round(y[-1], 3)))
 
@@ -50,12 +50,21 @@ def plot_summary(t, x, y, xp, yp, ux, uy, tf):
     plt.subplot(427)
     plt.plot(t, np.arctan2(-ux, uy))
     plt.title(r"Lander Angle ($\\theta$)")
-    plt.yticks([-np.pi/2, -np.pi/4, 0, np.pi / 4, np.pi/2], [r"$-\\frac{\\pi}{2}$", r"$-\\frac{\\pi}{4}$", "0", r"$\\frac{\\pi}{4}$", r"$\\frac{\\pi}{2}$"])
+    plt.yticks(
+        [-np.pi / 2, -np.pi / 4, 0, np.pi / 4, np.pi / 2],
+        [
+            r"$-\\frac{\\pi}{2}$",
+            r"$-\\frac{\\pi}{4}$",
+            "0",
+            r"$\\frac{\\pi}{4}$",
+            r"$\\frac{\\pi}{2}$",
+        ],
+    )
     plt.xlabel("Time (seconds)")
     plt.ylabel("Angle (radians)")
 
     plt.subplot(428)
-    plt.plot(t, (ux**2 + uy**2)**0.5)
+    plt.plot(t, (ux**2 + uy**2) ** 0.5)
     plt.title(r"Thrust Magnitude ($\\tau$)")
     plt.xlabel("Time (seconds)")
     plt.ylabel(r"Magnitude ($\\frac{m}{s^2}$)")
@@ -64,16 +73,19 @@ def plot_summary(t, x, y, xp, yp, ux, uy, tf):
 
 
 def plot_controls(t, ux, uy):
-    plt.style.use('dark_background')
+    plt.style.use("dark_background")
     plt.subplot(211)
     plt.plot(t, np.arctan2(-ux, uy))
     plt.title(r"Lander Angle ($\\theta$)")
-    plt.yticks([0, np.pi / 8, np.pi / 4, 3 * np.pi / 8], ["0", r"$\\frac{\\pi}{8}$", r"$\\frac{\\pi}{4}$", r"$\\frac{3\\pi}{8}$"])  # noqa: E501
+    plt.yticks(
+        [0, np.pi / 8, np.pi / 4, 3 * np.pi / 8],
+        ["0", r"$\\frac{\\pi}{8}$", r"$\\frac{\\pi}{4}$", r"$\\frac{3\\pi}{8}$"],
+    )  # noqa: E501
     plt.xlabel("Time (seconds)")
     plt.ylabel("Angle (radians)")
 
     plt.subplot(212)
-    plt.plot(t, (ux**2 + uy**2)**0.5)
+    plt.plot(t, (ux**2 + uy**2) ** 0.5)
     plt.title(r"Acceleration Magnitude ($\\tau$)")
     plt.xlabel("Time (seconds)")
     plt.ylabel(r"Magnitude ($m/s^2$)")
@@ -89,7 +101,7 @@ def plot_trajectory(
     guess: Optional[Tuple] = None,
     save_file: Optional[str] = None,
 ):
-    plt.style.use('dark_background')
+    plt.style.use("dark_background")
 
     if obstacles is not None:
         for obstacle in obstacles:
@@ -97,13 +109,13 @@ def plot_trajectory(
             y_vals = np.linspace(-10.0, 10.0, 150)
             X, Y = np.meshgrid(x_vals, y_vals)
             Z = obstacle.obstacle(X, Y)
-            plt.contour(X, Y, Z, linewidths=5, cmap='Greys')
+            plt.contour(X, Y, Z, linewidths=5, cmap="Greys")
 
     if guess is not None:
         guess_x, guess_y = guess
         plt.plot(guess_x, guess_y, label="Initial Guess")
 
-    plt.plot(x, y, color='#8dd3c7', label="Optimal Trajectory")
+    plt.plot(x, y, color="#8dd3c7", label="Optimal Trajectory")
 
     if guess is not None:
         plt.legend()
@@ -122,4 +134,3 @@ def plot_trajectory(
         plt.savefig(save_file, dpi=300)
 
     plt.show()
-

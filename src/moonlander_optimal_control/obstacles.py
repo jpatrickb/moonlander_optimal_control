@@ -20,4 +20,3 @@ __all__ = [
     "moving_obstacle_dy",
     "avoid_many_moving_obstacle",
 ]
-

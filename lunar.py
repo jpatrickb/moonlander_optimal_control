@@ -32,4 +32,3 @@ if __name__ == "__main__":  # simple demo
     lander = LunarLander([5, 10], 1.0)
     lander.find_path()
     lander.plot_state_controls()
-
