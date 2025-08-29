@@ -1,11 +1,7 @@
 import numpy as np
 from scipy.integrate import solve_bvp
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
 from matplotlib import animation
-import matplotlib.image as mpimg
-from scipy.ndimage import rotate
-from itertools import product
 
 animation.writer = animation.writers['ffmpeg']
 

@@ -13,8 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
-from moonlander_optimal_control.solver import solve_baseline
-from moonlander_optimal_control.plotting import plot_summary
+from moonlander_optimal_control.solver import solve_baseline  # noqa: E402
+from moonlander_optimal_control.plotting import plot_summary  # noqa: E402
 
 
 def main():

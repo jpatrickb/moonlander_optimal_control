@@ -1,5 +1,4 @@
 # Thin obstacle API wrappers around multi_obstacle.py
-from typing import Callable, Tuple
 
 # Re-export core helpers for convenience
 try:

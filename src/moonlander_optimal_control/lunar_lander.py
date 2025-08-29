@@ -81,7 +81,6 @@ class LunarLander:
         """
 
         def bc(ya_, yb_, p):
-            tf = p[0]
 
             # Save variables
             x0, y0, xp0, yp0, p1_0, p2_0, p3_0, p4_0 = ya_

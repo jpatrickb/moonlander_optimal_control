@@ -94,7 +94,6 @@ class LunarLander:
         # Create the boundary conditions
         def bc(ya_, yb_, p):
             # Final time
-            tf = p[0]
 
             # Save variables
             x0, y0, xp0, yp0, p1_0, p2_0, p3_0, p4_0 = ya_
@@ -264,7 +263,6 @@ class LunarLander:
 
         # Set up the plotting
         plt.clf()
-        Y_PLOT_LIMS = (0, 20)
         PATH_COLOR = "#ffffff"
         plt.title("Lunar Lander Trajectory")
         plt.gcf().set_size_inches(10, 10)

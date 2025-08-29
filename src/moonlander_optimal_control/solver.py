@@ -28,7 +28,6 @@ def solve_baseline(pos: Tuple[float, float], vx0: float, t_steps: int = 200,
         ])
 
     def bc(ya, yb, p):
-        tf = p[0]
         uxf = yb[6] / (2 * alpha)
         uyf = yb[7] / (2 * alpha)
         return np.array([
@@ -93,7 +92,6 @@ def solve_with_final_angle(
         ])
 
     def bc(ya, yb, p):
-        tf = p[0]
         uxf = yb[6] / (2 * alpha)
         uyf = yb[7] / (2 * alpha)
         return np.array([
