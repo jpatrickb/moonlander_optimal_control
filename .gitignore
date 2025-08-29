@@ -178,3 +178,14 @@ vcs.xml
 
 # PyPI configuration file
 .pypirc
+
+# macOS
+.DS_Store
+
+# Project outputs
+out/
+
+# Additional LaTeX intermediates
+*.log
+*.toc
+*.out

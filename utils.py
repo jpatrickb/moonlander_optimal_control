@@ -422,3 +422,42 @@ if __name__=="__main":
     pos = (5., 10.)
     v = 1.
     t, x, y, xp, yp, ux, uy, tf = lunar_lander(pos, v, t_steps=1000)
+
+# --- Compatibility shims: delegate to package API when available ---
+try:
+    import sys as _sys
+    import os as _os
+    _ROOT = _os.path.dirname(__file__)
+    _SRC = _os.path.join(_ROOT, "src")
+    if _os.path.isdir(_SRC) and _SRC not in _sys.path:
+        _sys.path.insert(0, _SRC)
+    from moonlander_optimal_control.solver import (
+        solve_baseline as _solve_baseline,
+        solve_with_final_angle as _solve_with_final_angle,
+    )
+    from moonlander_optimal_control.plotting import (
+        plot_summary as _plot_summary,
+        plot_controls as _plot_controls,
+        plot_trajectory as _plot_trajectory,
+    )
+    import warnings as _warnings
+    _warnings.filterwarnings("default")
+
+    def lunar_lander(pos_init, v_init, tf_guess=20, y0_guess=1, alpha=10., beta=25., gamma=3., nu=0., G=2., t_steps=200, animate_file=None):
+        return _solve_baseline(pos_init, v_init, t_steps=t_steps, tf_guess=tf_guess, y0_guess=y0_guess, alpha=alpha, beta=beta, gamma=gamma, nu=nu, G=G)
+
+    def lunar_lander_final_angle(pos_init, v_init, tf_guess=20, y0_guess=1, alpha=10., beta=25., gamma=3., nu=0., G=2., t_steps=200, rho=.01, final_angle_on=True, animate_file=None):
+        return _solve_with_final_angle(pos_init, v_init, t_steps=t_steps, tf_guess=tf_guess, y0_guess=y0_guess, alpha=alpha, beta=beta, gamma=gamma, nu=nu, G=G, rho=rho, final_angle_on=final_angle_on)
+
+    def make_plots(t, x, y, xp, yp, ux, uy, tf):
+        return _plot_summary(t, x, y, xp, yp, ux, uy, tf)
+
+    def make_control_plot(t, ux, uy):
+        return _plot_controls(t, ux, uy)
+
+    def make_trajectory_plot(x, y, obstacles=None, xlim=None, guess=None, save_file=None):
+        return _plot_trajectory(x, y, obstacles=obstacles, xlim=xlim, guess=guess, save_file=save_file)
+
+except Exception as _e:
+    # If importing the package API fails, keep original implementations above.
+    pass
