@@ -1,0 +1,10 @@
+[tool.ruff]
+extend-exclude = [
+  ".venv",
+  "**/.venv",
+  "**/*.ipynb",  # exclude notebooks to avoid noisy, non-critical lint in exploratory code
+]
+# You can uncomment and tweak if needed:
+#line-length = 100
+#target-version = "py311"
+
