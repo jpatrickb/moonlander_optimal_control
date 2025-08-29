@@ -6,7 +6,6 @@ from matplotlib import animation
 import matplotlib.image as mpimg
 from scipy.ndimage import rotate
 from itertools import product
-from tqdm import tqdm
 
 animation.writer = animation.writers['ffmpeg']
 
@@ -59,7 +58,6 @@ def lunar_lander(pos_init, v_init, tf_guess=20, y0_guess=1, alpha=10., beta=25.,
     # BC's 6-8 come from conditions on the costate
     # BC 9 comes from the final condition on the Hamiltonian relating to variable final time
     def bc(ya, yb, p):
-        tf = p[0]
         uxf = yb[6] / (2*alpha)
         uyf = yb[7] / (2*alpha)
         return np.array([
@@ -282,7 +280,6 @@ def lunar_lander_final_angle(pos_init, v_init, tf_guess=20, y0_guess=1, alpha=10
     # BC's 6-8 come from conditions on the costate
     # BC 9 comes from the final condition on the Hamiltonian relating to variable final time
     def bc(ya, yb, p):
-        tf = p[0]
         uxf = yb[6] / (2*alpha)
         uyf = yb[7] / (2*alpha)
         return np.array([
@@ -374,7 +371,6 @@ def lunar_lander_final_angle_v2(pos_init, v_init, tf_guess=20, y0_guess=1, alpha
     # BC's 6-8 come from conditions on the costate
     # BC 9 comes from the final condition on the Hamiltonian relating to variable final time
     def bc(ya, yb, p):
-        tf = p[0]
         uxf = yb[6] / (2*alpha)
         uyf = yb[7] / (2*alpha)
         return np.array([
