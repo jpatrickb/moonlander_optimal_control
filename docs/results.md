@@ -22,12 +22,6 @@ Control profiles over time (acceleration components, thrust magnitude, and angle
 
 A composite figure summarizing key states and controls.
 
-### Thrust profile (full)
-
-![Thrust Profile](assets/full_lander_thrust_v2.png)
-
-Detailed thrust and angle behavior across the approach.
-
 ### Gameplay reference
 
 ![Gameplay Reference](assets/lunar_lander_gameplay.png)

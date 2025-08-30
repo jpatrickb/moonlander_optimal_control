@@ -1,7 +1,9 @@
 # Authors
 
-The following contributors are credited based on authors listed in the LaTeX sources under `latex_files/`.
+We gratefully acknowledge the contributions of the following authors:
 
-- josephbeal
-
-If we missed anyone or if names should be adjusted (e.g., full names or ordering), please open a PR to update this page.
+- Patrick Beal
+- Tiara Eddington
+- TJ Hart
+- Madelyn Vines
+- Adam Ward
