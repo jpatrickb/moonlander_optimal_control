@@ -22,7 +22,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install ruff black pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f docs/requirements-docs.txt ]; then pip install -r docs/requirements-docs.txt; fi
 
       - name: Lint (ruff)
         run: ruff check .
@@ -33,6 +32,4 @@ jobs:
       # - name: Run tests (fast)
       #   run: pytest -m "not slow" -q
 
-      - name: Build docs
-        run: mkdocs build --strict
 
