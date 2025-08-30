@@ -1,15 +1,35 @@
-%! Author = josephbeal
-%! Date = 3/11/25
-
-% Preamble
-\documentclass[11pt]{article}
-
-% Packages
+\documentclass{article}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{graphicx} % Required for inserting images
+\usepackage{underscore}
 \usepackage{amsmath}
 
-% Document
+\title{Math 438 Project}
+\author{Patrick Beal, Tiara Eddington, TJ Hart, Madelyn Vines, Adam Ward}
+\date{March 24, 2025}
+
 \begin{document}
 
+\maketitle
+
+\section{Problem Description}
+For our project we decided to model ''Lunar Lander'', a popular game from the 70's. The objective is to move a rocket from one area to another without running into the landscape. The player controls the rocket with thrust, moving the rocket forward, and the angle, which points the rocket in the desired direction. 
+
+\section{Functional}
+The main problem we are trying to solving is object avoidance in a setting with multiple moving obstacles. The motivation behind our functional is explained thoroughly in the Object Avoidance lab, with certain adjustments made to better represent the control and constraints we are dealing with. We represent obstacles with a function $$C(x(t), y(t)) = \frac{1}{((x - c_x(t))^2 / r_x + (r - c_y(t))^2 / r_y)^\lambda + 1}.$$ This function defines obstacles as ellipses, with $r_x, r_y$ defining the size, $\lambda$ being a vanishing rate, and $c(t)$ a function specifying how the position of the obstacle's center moves over time.
+Now, we want to compare the solutions we find when considering a discrete control space versus a continuous one. For the discrete case, our control is the velocity of the player (frog), and is constrained to $u(t) \in \{-1, 0, 1\}$ for all $t$. So, at each time value, the frog has the option to either wait, move forward with velocity 1, or move backward with velocity -1. For now, we neglect the effects of acceleration in this case (we assume the frog does not need time to speed up or brake). For simplicity, we consider each $i$-th timestep/obstacle individually, and construct a cost functional that finds the optimal path for avoiding one obstacle. We want to penalize proximity to the obstacle, reward shorter distances to the final endpoint $x_f$ and shorter overall time $t_f$, and reward moving forward in the absence of obstacles. For the discrete case, this gives the following cost functional: $$\int_{0}^{t_i} (W_1C_i + W_2(x_f - x(t))^2 + W_3u)dt + W_4t_f,$$ where the $W_i$'s are constants specifying how each component of the cost should be weighted.
+\\ Turning to the continuous case, we still consider a frog crossing a street in minumum amount of time while avoiding one moving obstacle. However, we now treat the control as the frog's acceleration, which is bounded: $U_l \leq u(t) \leq U_u$ for all $t$. \textbf{TO DO: Is the cost functional actually different in this case?}
+
+\section{Tools}
+While coding up the solution to this problem we will use many Python libraries such as SciPy's \texttt{solve\_bvp}, NumPy, Matplotlib, and potentially others. We hope to use images from the game to create a realistic background for our game and animate it. We are using inspiration from our obstacle avoidance lab.
 
 
 \end{document}
+
+

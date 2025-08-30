@@ -1,15 +1,12 @@
 # Moonlander Optimal Control
 
-Welcome! This project formulates and solves an optimal control problem for a 2D lunar lander using boundary value problem (BVP) techniques.
+This site highlights the scientific findings and methodology behind our optimal control study of a 2D lunar lander. The technical setup is available, but our emphasis here is on results and methods rather than how to run the code.
 
-- Focus: minimum-time/effort landing, control and state constraints, and obstacle avoidance variants.
-- Tech: Python (NumPy, SciPy solve_bvp), Matplotlib for plots/animations.
+What you’ll find first:
+- Findings: concise takeaways and key results, with links to supporting figures.
+- Methods: the mathematical formulation, assumptions, and numerical approach.
+- Results: curated plots and visuals illustrating trajectories and controls.
+- Authors: contributors credited as listed in the LaTeX sources.
 
-Get started:
-- Install dependencies: see Quickstart
-- Reproduce a baseline solution: see Quickstart
-- Read about the math: see Methodology
-- Browse visuals: see Results
-
-Note: Large figures and videos may be added later under docs/assets.
+If you do want to run the code, see Quickstart (bottom of the navigation).
 
