@@ -5,7 +5,7 @@ title: Moonlander Optimal Control
 
 # Moonlander Optimal Control
 
-This site highlights the scientific findings and methodology behind our optimal control study of a 2D lunar lander. The emphasis is on results and methods rather than how to run the code.
+This site highlights the scientific findings and methodology behind our optimal control study of a 2D lunar lander.
 
 ## Navigate
 - Findings: concise takeaways and key results, with links to supporting figures → [Findings](findings.html)
