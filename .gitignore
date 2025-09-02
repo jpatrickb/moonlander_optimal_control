@@ -148,7 +148,10 @@ venv.bak/
 .ropeproject
 
 # mkdocs documentation
-/site
+# mkdocs documentation (disabled for this repo because /site is our Vite app)
+# /site
+!/site
+/site/dist
 
 # mypy
 .mypy_cache/
