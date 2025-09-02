@@ -1,13 +1,15 @@
 :root { --bg:#0b0d12; --panel:#12151c; --text:#e8edf2; --muted:#9aa7b2; --brand:#5b9dff; --border:#1e2430; --radius:14px; }
 *{box-sizing:border-box}
 html,body,#root{height:100%}
-body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:radial-gradient(1200px 600px at 10% -10%, #102040 0%, transparent 60%), radial-gradient(800px 600px at 100% 0%, #0c1a33 0%, transparent 60%), var(--bg); color:var(--text)}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:radial-gradient(1200px 600px at 10% -10%, #102040 0%, transparent 60%), radial-gradient(800px 600px at 100% 0%, #0c1a33 0%, transparent 60%), var(--bg); color:var(--text); background-attachment: fixed; background-repeat: no-repeat; background-size: cover}
 .container{max-width:1000px;margin:0 auto;padding:24px}
 .app-root{display:flex;flex-direction:column;min-height:100%}
 main.container{flex:1}
 .navbar{position:sticky;top:0;backdrop-filter:blur(8px);background:color-mix(in srgb, var(--bg) 82%, transparent);border-bottom:1px solid var(--border);}
 .navbar-inner{max-width:1000px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
 .brand{font-weight:700}
+.brand-title{font-size: 24px; letter-spacing: 0.3px}
+@media (min-width: 900px){ .brand-title{ font-size: 28px; }}
 .nav-links{display:flex;gap:12px;flex-wrap:wrap}
 .nav-link{color:var(--text);opacity:.8}
 .nav-link.active,.nav-link:hover{opacity:1;color:var(--brand)}
@@ -21,6 +23,10 @@ main.container{flex:1}
 
 /* Reset leftover template centering and ensure left-aligned layout */
 body { margin: 0; min-width: 320px; min-height: 100vh; }
+
+/* Link colors */
+a, a:visited { color: #ffffff; text-decoration: none; }
+a:hover { color: var(--brand); }
 
 /* Code and preformatted blocks */
 code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
